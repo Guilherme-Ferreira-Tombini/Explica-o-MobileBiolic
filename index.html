@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobileBiologist | Caderno de Campo Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 30 38" aria-hidden="true">
+                    <path
+                        class="logo-outline"
+                        d="M15 2C15 2 3 17 3 25a12 12 0 0 0 24 0C27 17 15 2 15 2Z"
+                    />
+
+                    <path
+                        class="logo-detail"
+                        d="M9 26a6 6 0 0 0 6 6"
+                    />
+                </svg>
+
+                <span class="hand">caderno de campo digital</span>
+            </div>
+
+            <h1>MobileBiologist</h1>
+
+            <p class="lead">
+                Um sistema feito para o biólogo registrar fontes de água
+                e amostras no próprio local da coleta, mesmo sem internet,
+                e mandar tudo para o servidor depois.
+            </p>
+
+            <p class="by">
+                Por Guilherme Ferreira Tombini · trabalho de Programação
+                para Dispositivos Móveis 2 · UEMS, Nova Andradina ·
+                novembro de 2026
+            </p>
+        </header>
+
+        <svg class="wave" viewBox="0 0 700 20" preserveAspectRatio="none" aria-hidden="true">
+            <path
+                class="wave-line"
+                d="M0 10Q29 0 58 10T117 10T175 10T233 10T292 10T350 10T408 10T467 10T525 10T583 10T642 10T700 10"
+            />
+        </svg>
+
+        <main class="main-content">
+            <section id="intro" class="section">
+                <h2>De onde veio a ideia</h2>
+                <p>
+                    Biólogos que acompanham fontes de água precisam anotar
+                    como a água está: temperatura, pH, amônia, nitrato e
+                    nitrito. O MobileBiologist nasceu para isso. Ele ajuda
+                    a registrar e organizar essas informações e a guardá-las
+                    para consultar depois (TOMBINI, 2026).
+                </p>
+
+                <p>
+                    O sistema foi pensado para dispositivos móveis da época,
+                    os Pocket PCs e os Tablet PCs, para que o preenchimento
+                    aconteça lá no local da coleta. Além do aplicativo,
+                    existe um site para cuidar dos dados, dos usuários e
+                    dos relatórios sobre a qualidade da água.
+                </p>
+
+                <div class="sticky">
+                    <b>Um aviso honesto</b>
+                    Eu não consegui rodar o sistema original: dependências
+                    e pacotes necessários não estão mais disponíveis ou
+                    não funcionam nos ambientes atuais nem em máquina
+                    virtual. Por isso, esta análise vem do código-fonte
+                    e da documentação.
+                </div>
+            </section>
+
+            <section id="como" class="section">
+                <h2>Como ele é por dentro</h2>
+                <p>
+                    O aplicativo foi escrito em Visual Basic .NET e
+                    dividido em três camadas: a interface que a pessoa
+                    vê, as regras de funcionamento e o acesso ao banco
+                    de dados. Ele conversa com o servidor por um XML
+                    Web Service com SOAP, e o site foi feito em ASP.NET.
+                </p>
+
+                <figure>
+
+                    <svg
+                        class="architecture"
+                        viewBox="0 0 640 250"
+                        role="img"
+                        aria-label="Esquema: o dispositivo móvel, com três camadas, conversa por Web Service com o servidor, que tem o banco SQL Server e o site ASP.NET"
+                    >
+                        <rect class="diagram-box" x="8" y="8" width="224" height="234" rx="12"/>
+                        <text class="diagram-title" x="22" y="36">no dispositivo móvel</text>
+
+                        <rect class="diagram-item" x="24" y="52" width="192" height="44" rx="8"/>
+                        <text class="diagram-text" x="40" y="80">Apresentação</text>
+
+                        <rect class="diagram-item" x="24" y="104" width="192" height="44" rx="8"/>
+                        <text class="diagram-text" x="40" y="132">Lógica de negócio</text>
+
+                        <rect class="diagram-item" x="24" y="156" width="192" height="44" rx="8"/>
+                        <text class="diagram-text" x="40" y="184">Acesso ao banco local</text>
+
+                        <text class="diagram-subtitle" x="24" y="228">Pocket PC e Tablet PC</text>
+
+                        <path
+                            class="diagram-arrow"
+                            d="M240 122H394M384 113l11 9-11 9M250 113l-11 9 11 9"
+                        />
+
+                        <text class="diagram-subtitle" x="250" y="106">Web Service</text>
+                        <text class="diagram-subtitle" x="284" y="152">SOAP</text>
+
+                        <rect class="diagram-box" x="402" y="8" width="230" height="234" rx="12"/>
+                        <text class="diagram-title" x="416" y="36">no servidor</text>
+
+                        <rect class="diagram-item" x="418" y="52" width="198" height="44" rx="8"/>
+                        <text class="diagram-text" x="434" y="80">Web Service</text>
+
+                        <rect class="diagram-item" x="418" y="104" width="198" height="44" rx="8"/>
+                        <text class="diagram-text" x="434" y="132">SQL Server 2000</text>
+
+                        <rect class="diagram-item" x="418" y="156" width="198" height="44" rx="8"/>
+                        <text class="diagram-text" x="434" y="184">Site em ASP.NET</text>
+
+                        <text class="diagram-subtitle" x="418" y="228">fontes, amostras, usuários</text>
+                    </svg>
+
+                    <figcaption>
+                        Figura 1 – O caminho dos dados, do dispositivo ao
+                        servidor. Esquema meu, feito a partir da análise
+                        do projeto.
+                    </figcaption>
+
+                </figure>
+
+                <p>
+                    Fontes e amostras viajam em estruturas XML. Imagens
+                    e marcações vão à parte, em formato binário. No servidor,
+                    procedimentos armazenados cuidam de incluir e atualizar
+                    os registros.
+                </p>
+
+                <div class="chips">
+                    <span>Visual Basic .NET</span>
+                    <span>.NET Compact Framework</span>
+                    <span>.NET Framework</span>
+                    <span>ASP.NET</span>
+                    <span>XML Web Services</span>
+                    <span>SOAP</span>
+                    <span>SQL Server 2000</span>
+                </div>
+                <h3>Pocket PC ou Tablet PC?</h3>
+                <p>
+                    As duas versões do aplicativo se parecem bastante,
+                    mas o aparelho muda algumas coisas.
+                </p>
+
+                <div class="papel">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>O quê</th>
+                                <th>Pocket PC</th>
+                                <th>Tablet PC</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Plataforma</td>
+                                <td>.NET Compact Framework</td>
+                                <td>.NET Framework completo</td>
+                            </tr>
+
+                            <tr>
+                                <td>Imagens das fontes</td>
+                                <td>Não descrito no material</td>
+                                <td>Suportadas</td>
+                            </tr>
+
+                            <tr>
+                                <td>Marcação com Ink</td>
+                                <td>Indisponível</td>
+                                <td>Disponível</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="dados" class="section">
+                <h2>O que se anota em cada visita</h2>
+                <p>
+                    São dois cadastros que se ligam: primeiro a fonte,
+                    depois as amostras coletadas nela. Os parâmetros
+                    químicos são registrados em partes por milhão (ppm).
+                </p>
+
+                <div class="cards">
+                    <article class="ficha">
+                        <h3>Ficha da fonte</h3>
+                        <dl>
+                            <dt>Nome</dt>
+                            <dd></dd>
+
+                            <dt>Localização</dt>
+                            <dd></dd>
+
+                            <dt>Latitude</dt>
+                            <dd></dd>
+
+                            <dt>Longitude</dt>
+                            <dd></dd>
+                        </dl>
+                        <small>
+                            Cada fonte tem um identificador próprio.
+                            No Tablet PC, ainda dá para guardar uma
+                            imagem dela.
+                        </small>
+                    </article>
+
+                    <article class="ficha">
+                        <h3>Ficha da amostra</h3>
+                        <dl>
+                            <dt>Fonte de água</dt>
+                            <dd></dd>
+
+                            <dt>Data da coleta</dt>
+                            <dd></dd>
+
+                            <dt>Temperatura · pH</dt>
+                            <dd></dd>
+
+                            <dt>Amônia · nitrato · nitrito (ppm)</dt>
+                            <dd></dd>
+
+                            <dt>Observações</dt>
+                            <dd></dd>
+                        </dl>
+
+                        <small>Toda amostra pertence a uma fonte.</small>
+                    </article>
+                </div>
+
+                <p>
+                    No Tablet PC, com a tecnologia Ink, dá para riscar
+                    na imagem da fonte o ponto exato de onde a amostra
+                    foi retirada. No Pocket PC, esse recurso não existe.
+                </p>
+            </section>
+
+            <section id="perfis" class="section">
+                <h2>Quem pode fazer o quê</h2>
+                <p>
+                    O acesso depende do papel de cada pessoa. No aplicativo
+                    móvel, só o biólogo de campo faz coleta. No site,
+                    as permissões são estas:
+                </p>
+
+                <div class="papel">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Perfil</th>
+                                <th>Pode</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Biólogo de campo</td>
+                                <td>
+                                    Adicionar, editar e excluir fontes
+                                    e amostras; consultar relatórios.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Administrador</td>
+                                <td>
+                                    Tudo o que o biólogo faz, e também
+                                    gerenciar usuários e papéis de acesso.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Usuário padrão</td>
+                                <td>
+                                    Entrar no sistema e ver os relatórios
+                                    disponíveis.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+            <section id="offline" class="section">
+                <h2>E quando não tem sinal?</h2>
+                <p>
+                    Esse é um dos pontos mais importantes do projeto:
+                    o aplicativo guarda tudo no próprio aparelho e
+                    deixa o envio para quando houver conexão. Na prática,
+                    funciona assim:
+                </p>
+
+                <ol class="passos">
+                    <li>
+                        <b>Entrar.</b>
+                        O login pode ser remoto, com conexão, ou local,
+                        com os dados guardados no aparelho. Para usar
+                        o local, é preciso já ter feito ao menos um
+                        login remoto com sucesso.
+                    </li>
+
+                    <li>
+                        <b>Coletar.</b>
+                        Sem conexão, o biólogo adiciona novas amostras
+                        ao banco do próprio aparelho. Como o servidor
+                        está fora de alcance, as opções são mais limitadas.
+                    </li>
+
+                    <li>
+                        <b>Enviar.</b>
+                        Voltou a conexão? O upload manda as novas amostras
+                        para o servidor, que reúne tudo.
+                    </li>
+
+                    <li>
+                        <b>Baixar.</b>
+                        O download traz fontes e amostras do servidor.
+                        Se ainda houver registros locais pendentes,
+                        ele é bloqueado, para não apagar o que não foi enviado.
+                    </li>
+
+                    <li>
+                        <b>Errou a senha?</b>
+                        Depois de três erros, os dados locais são
+                        excluídos e o sistema fecha. Para voltar ao
+                        acesso local, só com um novo login remoto.
+                    </li>
+                </ol>
+
+                <p>
+                    Tanto o download quanto o upload são completos:
+                    ou se baixa tudo ou se cancela, e todas as pendências
+                    são enviadas de uma vez.
+                </p>
+
+            </section>
+
+            <section id="resultado" class="section">
+                <h2>O que eu achei</h2>
+                <div class="duas">
+                    <div class="bom">
+                        <h3>O que funciona bem</h3>
+                        <ul>
+                            <li>
+                                Dá para trabalhar sem conexão constante
+                                e sincronizar depois.
+                            </li>
+
+                            <li>
+                                Aparelhos móveis e site conversam entre si,
+                                e o site cuida de usuários, fontes e relatórios.
+                            </li>
+
+                            <li>
+                                Uma mesma coleta reúne várias informações:
+                                parâmetros, observações, imagem e coordenadas.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="melhorar">
+                        <h3>Onde dá para melhorar</h3>
+                        <ul>
+                            <li>
+                                A sincronização é completa, então não dá
+                                para escolher o que enviar ou receber.
+                            </li>
+
+                            <li>
+                                Pocket PC e Tablet PC diferem no trabalho
+                                com imagens.
+                            </li>
+
+                            <li>
+                                A segurança pediria senhas criptografadas
+                                e HTTPS entre aparelho e servidor.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p>
+                    No geral, o MobileBiologist é uma proposta interessante
+                    para o monitoramento ambiental: junta várias tecnologias
+                    para facilitar registrar, guardar e gerenciar o que
+                    foi coletado.
+                </p>
+            </section>
+
+            <section id="versao" class="section">
+                <h2>E hoje? Uma versão nova</h2>
+
+                <p>
+                    Como as tecnologias originais não dá mais para conseguir,
+                    fiz uma nova versão em HTML para mostrar como o sistema
+                    poderia funcionar atualmente. Ela tem cadastro e consulta
+                    de fontes de água, registro das amostras e visualização
+                    dos dados coletados.
+                </p>
+
+                <p>
+                    Ela foi feita à parte e não é uma atualização direta
+                    do código original, que tem um cadastro sincronizado
+                    com o banco de dados.
+                </p>
+
+                <div class="teste">
+                    <h3>Quer testar?</h3>
+                    <p>
+                        A versão está publicada e abre direto no navegador.
+                    </p>
+                    <p>
+                        <a
+                            class="btn"
+                            href="https://mobilebiologist.vercel.app/"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            mobilebiologist.vercel.app
+                        </a>
+                    </p>
+                </div>
+            </section>
+
+            <section id="refs" class="section">
+                <h2>Referências</h2>
+                <ul class="refs">
+                    <li>
+                        TOMBINI, Guilherme Ferreira.
+                        <b>
+                            Trabalho de Programação para Dispositivos
+                            Móveis 2:
+                        </b>
+                        análise do sistema MobileBiologic.
+                        Nova Andradina: Universidade Estadual de Mato
+                        Grosso do Sul, 2026.
+                    </li>
+
+                    <li>
+                        LEE, Valentino; SCHNEIDER, Heather; SCHELL, Robbie.
+                        <b>
+                           Aplicações móveis: arquitetura, projeto e desenvolvimento.
+                        </b>
+                        Tradução: Amaury Bentes; Deborah Rüdiger. Revisão técnica: Renato Haddad. São Paulo: Pearson Education do Brasil, 2005.
+                    </li>
+                </ul>
+            </section>
+
+        </main>
+
+        <footer class="footer">
+            Feito por Guilherme Ferreira Tombini -
+            novembro de 2026
+        </footer>
+    </div>
+</body>
+</html>
